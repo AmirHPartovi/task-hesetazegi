@@ -1,0 +1,22 @@
+@font-face {
+  font-family: Dana;
+  src: url(./assets/fonts/DanaFaNum-Medium.ttf);
+  font-weight: normal;
+}
+@font-face {
+  font-family: Dana;
+  src: url(./assets/fonts/DanaFaNum-Black.ttf);
+  font-weight: medium;
+}
+@font-face {
+  font-family: Dana;
+  src: url(./assets/fonts/DanaFaNum-Bold.ttf);
+  font-weight: bold;
+}
+
+*{
+  font-family: Dana;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
