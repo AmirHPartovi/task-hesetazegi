@@ -2,22 +2,28 @@ import React, { useState } from 'react'
 import { ReactComponent as ArrowDownIcon } from "../../assets/icons/ArrowDownIcon.svg";
 import { ReactComponent as ArrowLeftIcon } from "../../assets/icons/ArrowLeftIcon.svg";
 
+
+import { useMediaPredicate } from "react-media-hook";
+
 type Props = {
     title:string,
     description:string
 }
 
 const Card = ({title,description}: Props) => {
-    const[isOpen,setIsOpen]=useState(true)
+    const[isOpen,setIsOpen]=useState(false)
     const handleOnClick = () =>{
         setIsOpen(!isOpen)
     }
+
+    const biggerThan648 = useMediaPredicate("(min-width: 648px)");
+
   return (
     <>
     <div
     onClick={handleOnClick} 
     style={{
-        maxWidth:'648px',
+        width:biggerThan648?'648px':'320px',
         boxShadow:'0px 4px 16px rgba(137, 137, 137, 0.1)',
         borderRadius:'8px',
         margin:'24px',
@@ -31,7 +37,9 @@ const Card = ({title,description}: Props) => {
             
             
         }}>
-            <div>
+            <div style={{
+                fontSize:'1rem',
+            }}>
                 {title}
             </div>
             <div>
@@ -46,9 +54,9 @@ const Card = ({title,description}: Props) => {
             style={{
                 borderColor:'#EFEFEF',
                 backgroundColor:'#EFEFEF',
-                width:'600px',
+                width:biggerThan648?'600px':'300px',
                 height:'1px',
-                margin:'0px 24px'
+                margin:biggerThan648?'0px 24px':'0px 10px'
                 
             }}>
             </div>
@@ -56,7 +64,7 @@ const Card = ({title,description}: Props) => {
             style={{
                 fontStyle: 'normal',
                 fontWeight: '500',
-                fontSize: '16px',
+                fontSize: '1rem',
                 lineHeight: '32px',
                 color:'#656565',
                 padding:'16px 24px',

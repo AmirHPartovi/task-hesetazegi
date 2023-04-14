@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react'
 
-import Data from '../../api/data'
+
 import Card from './Card'
+
 import { dataType } from '../../models/models'
+
 import axios from 'axios'
 import api from '../../api/data'
+
+import { useMediaPredicate } from "react-media-hook";
+import Spinner from './Spinner'
+
 
 type Props = {}
 
@@ -27,25 +33,34 @@ const CardContainer =(props: Props) => {
   
       fetchData();
     }, []);
+
+
+    const biggerThan648 = useMediaPredicate("(min-width: 648px)");
     return(
+      
         <div style={{
             display:'flex',
+            flexDirection:biggerThan648?'row':'column',
             justifyContent:'center',
             alignItems:'center',
-            maxWidth:'1400px',
+            
             
         }}>
+          {loading?<Spinner/>:
             <div style={{
-                display:'flex-box',
+                display:'flex',
                 flexDirection:'row',
                 flexWrap:'wrap',
-                maxWidth:'1800px',
+                width:biggerThan648?'1400px':'300px',
+                
                 
             }}>
             {data.map((item:dataType)=>(
-                <Card title={item.title} description={item.description}/>
+                <div >
+                  <Card key={item.id} title={item.title} description={item.description}/>
+                </div>
             ))}
-            </div>
+            </div>}
         </div>
     )
 
