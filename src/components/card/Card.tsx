@@ -1,21 +1,26 @@
-import React from 'react'
-import { ReactComponent as ArrowIcon } from "../../assets/icons/ArrowIcon.svg";
+import React, { useState } from 'react'
+import { ReactComponent as ArrowDownIcon } from "../../assets/icons/ArrowDownIcon.svg";
+import { ReactComponent as ArrowLeftIcon } from "../../assets/icons/ArrowLeftIcon.svg";
 
-type Props = {}
+type Props = {
+    title:string,
+    description:string
+}
 
-const Card = (props: Props) => {
-
+const Card = ({title,description}: Props) => {
+    const[isOpen,setIsOpen]=useState(true)
     const handleOnClick = () =>{
-
+        setIsOpen(!isOpen)
     }
   return (
+    <>
     <div
     onClick={handleOnClick} 
     style={{
-        width:'648px',
+        maxWidth:'648px',
         boxShadow:'0px 4px 16px rgba(137, 137, 137, 0.1)',
         borderRadius:'8px',
-        margin:'24px'
+        margin:'24px',
     }}>
         <div style={{
             display:'flex',
@@ -27,25 +32,41 @@ const Card = (props: Props) => {
             
         }}>
             <div>
-                     1. دلیل خلق حس تازگی چیست؟
+                {title}
             </div>
             <div>
-                    <ArrowIcon/>
+                    {isOpen?<ArrowDownIcon/>:<ArrowLeftIcon/>}
             </div>
         </div>
         <div
         style={{
-            fontStyle: 'normal',
-            fontWeight: '500',
-            fontSize: '16px',
-            lineHeight: '32px',
-            color:'#656565',
-            padding:'16px 24px',
-
+            display:isOpen?'block':'none',
         }}>
-        حس تازگی می‌خواهد نگاه‌های دور شده از اهمیت و جایگاه آشپزی را دوباره به سمت آشپزی برگرداند؛ تا ارتباط آن با حوزه سلامت برای همه مردم صاحب اهمیت شود. همچنین می‌خواهد تمدن کهن آشپزی جهان را به‌صورت کاربردی و مطابق با نیازهای هر شخص، وارد خانه‌ها کند.
+            <div 
+            style={{
+                borderColor:'#EFEFEF',
+                backgroundColor:'#EFEFEF',
+                width:'600px',
+                height:'1px',
+                margin:'0px 24px'
+                
+            }}>
+            </div>
+            <div
+            style={{
+                fontStyle: 'normal',
+                fontWeight: '500',
+                fontSize: '16px',
+                lineHeight: '32px',
+                color:'#656565',
+                padding:'16px 24px',
+
+            }}>
+                {description}
+            </div>
         </div>
     </div>
+    </>
   )
 }
 
