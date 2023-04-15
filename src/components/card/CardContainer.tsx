@@ -56,8 +56,8 @@ const CardContainer =(props: Props) => {
                 
             }}>
             {data.map((item:dataType)=>(
-                <div >
-                  <Card key={item.id} title={item.title} description={item.description}/>
+                <div key={item.id} >
+                  <Card title={item.title} description={item.description}/>
                 </div>
             ))}
             </div>}
